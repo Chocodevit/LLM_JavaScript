@@ -55,6 +55,10 @@ app.post("/convertTOXMl", (req, res) => {
         //pista keys[i] accedeix a la llista de keys i posa el text que hem guardat abans, el mateix amb values[i]
         xml+="<";
         //continua per aquí!
+        //Per a cada clau, generem el format XML:<clau>valor</clau> ("nom":"Anna": <nom>Anna</nom>)
+        xml += "<" + keys[i] + ">"; //Afegim l'etiqueta d'obertura utilitzant el nom de la clau (<nom>)
+        xml += values[i];// Afegim el contingut o valor que hi ha dins d'aquesta clau (Ana)
+        xml += "</" + keys[i] + ">";//Afegim l'etiqueta de tancament corresponent (</nom>)
       }
     xml +="</arrel>";
     console.log(xml);
