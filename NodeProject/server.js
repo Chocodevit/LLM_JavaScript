@@ -1,4 +1,5 @@
 const express = require("express");
+const convert = require("xml-js");
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,22 @@ app.post("/convert", (req, res) => {
   const { data } = req.body;
 
   const result = data.toUpperCase(); // prova simple
+  res.json({ result });
+});
+
+// JSON A XML 
+app.post("/convertJSONTOXML", (req, res) => {
+  const { data } = req.body;
+
+  const result = convert.xml2json(data, { compact: true, spaces: 4 });
+  res.json({ result });
+});
+
+// XML A JSON
+app.post("/convertXMLTOJSON", (req, res) => {
+  const { data } = req.body;
+
+  const result = convert.json2xml(data, { compact: true, spaces: 4 });
   res.json({ result });
 });
 
