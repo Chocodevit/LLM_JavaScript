@@ -35,6 +35,17 @@ app.post("/convertXMLTOJSON", (req, res) => {
   res.json({ result });
 });
 
+// Pokemon API
+app.post("/pokemonXML", async (req, res) => {
+  const { data } = req.body;
+
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${data}`);
+  const pokeJson = await response.json();
+  const result = convert.json2xml(pokeJson, {compact:true,spaces:4});
+  res.json({ result });
+  
+});
+
 //=================funció a completar===========================================
 app.post("/convertTOXMl", (req, res) => {
   const { data } = req.body;
